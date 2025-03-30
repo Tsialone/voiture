@@ -1,0 +1,42 @@
+#include <iostream>
+#include "Voiture.hpp"
+#include "Evenement.hpp"
+#include "UtilDb.hpp"
+
+using namespace std;
+
+int main()  
+{   
+    cout << "\n\n\n"  << endl;
+    try
+    {
+        UtilDb::init("database/voiture.sqlite3");
+        Voiture nouvelleVoiture(2, "Kia", 340.0, 3.0, 2.5, 80.0, 15.0);
+        Evenement ev  (1 , 1 , 121 , 2 ,  "12:02:02");
+        ev.save();
+        // ev.save();
+        vector<Voiture>   all_voiture;
+        vector<Evenement> all_ev ;
+        all_voiture  = nouvelleVoiture.getAll();
+        // all_ev = ev.getAll();
+        // nouvelleVoiture.save();
+        // nouvelleVoiture.update();
+        // nouvelleVoiture.remove();
+
+        for (Voiture v : all_voiture) {
+            cout << "voiture: "  << v.getModel() << endl; 
+        }
+        for (Evenement ev : all_ev) {
+            cout << "evenement: "  <<  ev.getGamma() << endl; 
+        }
+
+
+        UtilDb::closeCon();
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
+    return 0;
+}

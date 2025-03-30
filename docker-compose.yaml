@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:5.7 
+    container_name: nanavoSQL
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret  
+      MYSQL_DATABASE: voiture     
+      MYSQL_USER: 'itu'              
+      MYSQL_PASSWORD: 'bloodseeker'     
+    volumes:
+      - mysql_data:/var/lib/mysql   
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: nanavoSQL_admin
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - "8081:80"  # You can change the port if you prefer
+    depends_on:
+      - db
+    networks:
+      - default
+volumes:
+  mysql_data:

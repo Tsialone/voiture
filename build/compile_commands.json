@@ -1,0 +1,38 @@
+[
+{
+  "directory": "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/build",
+  "command": "/usr/bin/g++ -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -I/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.2 -isystem /usr/include/wx-3.2  -pthread -g -std=c++17 -o CMakeFiles/Voiture.dir/src/DashBoad.cpp.o -c /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/DashBoad.cpp",
+  "file": "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/DashBoad.cpp",
+  "output": "CMakeFiles/Voiture.dir/src/DashBoad.cpp.o"
+},
+{
+  "directory": "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/build",
+  "command": "/usr/bin/g++ -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -I/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.2 -isystem /usr/include/wx-3.2  -pthread -g -std=c++17 -o CMakeFiles/Voiture.dir/src/Evenement.cpp.o -c /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/Evenement.cpp",
+  "file": "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/Evenement.cpp",
+  "output": "CMakeFiles/Voiture.dir/src/Evenement.cpp.o"
+},
+{
+  "directory": "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/build",
+  "command": "/usr/bin/g++ -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -I/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.2 -isystem /usr/include/wx-3.2  -pthread -g -std=c++17 -o CMakeFiles/Voiture.dir/src/MainFrame.cpp.o -c /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/MainFrame.cpp",
+  "file": "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/MainFrame.cpp",
+  "output": "CMakeFiles/Voiture.dir/src/MainFrame.cpp.o"
+},
+{
+  "directory": "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/build",
+  "command": "/usr/bin/g++ -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -I/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.2 -isystem /usr/include/wx-3.2  -pthread -g -std=c++17 -o CMakeFiles/Voiture.dir/src/UtilDb.cpp.o -c /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/UtilDb.cpp",
+  "file": "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/UtilDb.cpp",
+  "output": "CMakeFiles/Voiture.dir/src/UtilDb.cpp.o"
+},
+{
+  "directory": "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/build",
+  "command": "/usr/bin/g++ -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -I/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.2 -isystem /usr/include/wx-3.2  -pthread -g -std=c++17 -o CMakeFiles/Voiture.dir/src/Voiture.cpp.o -c /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/Voiture.cpp",
+  "file": "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/Voiture.cpp",
+  "output": "CMakeFiles/Voiture.dir/src/Voiture.cpp.o"
+},
+{
+  "directory": "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/build",
+  "command": "/usr/bin/g++ -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -I/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.2 -isystem /usr/include/wx-3.2  -pthread -g -std=c++17 -o CMakeFiles/Voiture.dir/src/main.cpp.o -c /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/main.cpp",
+  "file": "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/main.cpp",
+  "output": "CMakeFiles/Voiture.dir/src/main.cpp.o"
+}
+]
