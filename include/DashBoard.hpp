@@ -12,7 +12,7 @@ public:
     double consommation_t = 0.0;
     DashBoard(wxWindow *parent, Voiture *voiture_dash);
     Voiture *getVoitureDash() const;
-    void setVoitureDahs(Voiture *voiture_dash);
+    void setVoitureDash(Voiture *voiture_dash);
     void UpdateSpeedDisplay();
     wxStaticText *getSpeedDisplay();
     void setSpeedDisplay(wxStaticText *speed_display);

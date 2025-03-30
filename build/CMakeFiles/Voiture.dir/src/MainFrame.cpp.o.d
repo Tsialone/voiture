@@ -1,7 +1,7 @@
 CMakeFiles/Voiture.dir/src/MainFrame.cpp.o: \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/MainFrame.cpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/MainFrame.cpp \
  /usr/include/stdc-predef.h \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include/MainFrame.hpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/MainFrame.hpp \
  /usr/include/wx-3.2/wx/wx.h /usr/include/wx-3.2/wx/defs.h \
  /usr/include/wx-3.2/wx/platform.h /usr/include/wx-3.2/wx/compiler.h \
  /usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.2/wx/setup.h \
@@ -384,9 +384,9 @@ CMakeFiles/Voiture.dir/src/MainFrame.cpp.o: \
  /usr/include/wx-3.2/wx/mdi.h /usr/include/wx-3.2/wx/gtk/mdi.h \
  /usr/include/wx-3.2/wx/combo.h /usr/include/wx-3.2/wx/renderer.h \
  /usr/include/wx-3.2/wx/generic/combo.h \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include/Voiture.hpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/Voiture.hpp \
  /usr/include/sqlite3.h \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include/UtilDb.hpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/UtilDb.hpp \
  /usr/include/c++/13/memory \
  /usr/include/c++/13/bits/stl_raw_storage_iter.h \
  /usr/include/c++/13/bits/align.h \
@@ -403,11 +403,16 @@ CMakeFiles/Voiture.dir/src/MainFrame.cpp.o: \
  /usr/include/c++/13/bits/atomic_lockfree_defines.h \
  /usr/include/c++/13/backward/auto_ptr.h \
  /usr/include/c++/13/pstl/glue_memory_defs.h \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include/Evenement.hpp \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include/DashBoard.hpp \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include/DashBoard.hpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/Evenement.hpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/DashBoard.hpp \
+ /usr/include/c++/13/map /usr/include/c++/13/bits/stl_tree.h \
+ /usr/include/c++/13/bits/stl_map.h \
+ /usr/include/c++/13/bits/stl_multimap.h /usr/include/c++/13/set \
+ /usr/include/c++/13/bits/stl_set.h \
+ /usr/include/c++/13/bits/stl_multiset.h \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/DashBoard.hpp \
  /usr/include/c++/13/sstream /usr/include/c++/13/bits/sstream.tcc \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include/Fonction.hpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/Fonction.hpp \
  /usr/include/c++/13/iomanip /usr/include/c++/13/locale \
  /usr/include/c++/13/bits/locale_facets_nonio.h /usr/include/c++/13/ctime \
  /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
@@ -417,7 +422,4 @@ CMakeFiles/Voiture.dir/src/MainFrame.cpp.o: \
  /usr/include/c++/13/bits/locale_conv.h \
  /usr/include/c++/13/bits/quoted_string.h /usr/include/c++/13/chrono \
  /usr/include/c++/13/bits/chrono.h /usr/include/c++/13/ratio \
- /usr/include/c++/13/cstdint /usr/include/c++/13/bits/parse_numbers.h \
- /usr/include/c++/13/set /usr/include/c++/13/bits/stl_tree.h \
- /usr/include/c++/13/bits/stl_set.h \
- /usr/include/c++/13/bits/stl_multiset.h
+ /usr/include/c++/13/cstdint /usr/include/c++/13/bits/parse_numbers.h

@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/DashBoad.cpp" "CMakeFiles/Voiture.dir/src/DashBoad.cpp.o" "gcc" "CMakeFiles/Voiture.dir/src/DashBoad.cpp.o.d"
-  "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/Evenement.cpp" "CMakeFiles/Voiture.dir/src/Evenement.cpp.o" "gcc" "CMakeFiles/Voiture.dir/src/Evenement.cpp.o.d"
-  "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/MainFrame.cpp" "CMakeFiles/Voiture.dir/src/MainFrame.cpp.o" "gcc" "CMakeFiles/Voiture.dir/src/MainFrame.cpp.o.d"
-  "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/UtilDb.cpp" "CMakeFiles/Voiture.dir/src/UtilDb.cpp.o" "gcc" "CMakeFiles/Voiture.dir/src/UtilDb.cpp.o.d"
-  "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/Voiture.cpp" "CMakeFiles/Voiture.dir/src/Voiture.cpp.o" "gcc" "CMakeFiles/Voiture.dir/src/Voiture.cpp.o.d"
-  "/media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/main.cpp" "CMakeFiles/Voiture.dir/src/main.cpp.o" "gcc" "CMakeFiles/Voiture.dir/src/main.cpp.o.d"
+  "/media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/DashBoad.cpp" "CMakeFiles/Voiture.dir/src/DashBoad.cpp.o" "gcc" "CMakeFiles/Voiture.dir/src/DashBoad.cpp.o.d"
+  "/media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Evenement.cpp" "CMakeFiles/Voiture.dir/src/Evenement.cpp.o" "gcc" "CMakeFiles/Voiture.dir/src/Evenement.cpp.o.d"
+  "/media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/MainFrame.cpp" "CMakeFiles/Voiture.dir/src/MainFrame.cpp.o" "gcc" "CMakeFiles/Voiture.dir/src/MainFrame.cpp.o.d"
+  "/media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/UtilDb.cpp" "CMakeFiles/Voiture.dir/src/UtilDb.cpp.o" "gcc" "CMakeFiles/Voiture.dir/src/UtilDb.cpp.o.d"
+  "/media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Voiture.cpp" "CMakeFiles/Voiture.dir/src/Voiture.cpp.o" "gcc" "CMakeFiles/Voiture.dir/src/Voiture.cpp.o.d"
+  "/media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/main.cpp" "CMakeFiles/Voiture.dir/src/main.cpp.o" "gcc" "CMakeFiles/Voiture.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

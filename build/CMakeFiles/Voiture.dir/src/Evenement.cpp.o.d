@@ -1,7 +1,7 @@
 CMakeFiles/Voiture.dir/src/Evenement.cpp.o: \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/Evenement.cpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Evenement.cpp \
  /usr/include/stdc-predef.h \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include/Evenement.hpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/Evenement.hpp \
  /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -173,5 +173,5 @@ CMakeFiles/Voiture.dir/src/Evenement.cpp.o: \
  /usr/include/c++/13/backward/auto_ptr.h \
  /usr/include/c++/13/pstl/glue_memory_defs.h \
  /usr/include/c++/13/pstl/execution_defs.h \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include/UtilDb.hpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/UtilDb.hpp \
  /usr/include/sqlite3.h

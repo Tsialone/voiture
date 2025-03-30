@@ -3,16 +3,16 @@
 #include "Voiture.hpp"
 #include <wx/dcbuffer.h>
 
-#define TIMER_MAIN 1000          // Identifiant unique pour timer
-#define TIMER_CONSO 1001         // Identifiant unique pour consommation_timer
+#define TIMER_MAIN 1000  // Identifiant unique pour timer
+#define TIMER_CONSO 1001 // Identifiant unique pour consommation_timer
 
 wxBEGIN_EVENT_TABLE(DashBoard, wxPanel)
     EVT_TIMER(TIMER_MAIN, DashBoard::OnTimer)
-    EVT_TIMER(TIMER_CONSO, DashBoard::consommationTimer)
-    EVT_PAINT(DashBoard::OnPaint)
-wxEND_EVENT_TABLE()
+        EVT_TIMER(TIMER_CONSO, DashBoard::consommationTimer)
+            EVT_PAINT(DashBoard::OnPaint)
+                wxEND_EVENT_TABLE()
 
-DashBoard::DashBoard(wxWindow *parent, Voiture *voiture)
+                    DashBoard::DashBoard(wxWindow *parent, Voiture *voiture)
     : wxPanel(parent, wxID_ANY, wxPoint(450, 50), wxSize(1000, 800),
               wxBORDER_SIMPLE | wxNO_FULL_REPAINT_ON_RESIZE),
       angleAiguille(0)
@@ -32,7 +32,7 @@ DashBoard::DashBoard(wxWindow *parent, Voiture *voiture)
                                      wxSize(300, 50));
     speed_display->SetFont(font);
 
-    timer = new wxTimer(this, TIMER_MAIN);             // Timer principal
+    timer = new wxTimer(this, TIMER_MAIN);               // Timer principal
     consommation_timer = new wxTimer(this, TIMER_CONSO); // Timer consommation
 
     SetBackgroundStyle(wxBG_STYLE_PAINT);
@@ -66,6 +66,10 @@ wxTimer *DashBoard::getTimer()
 {
     return this->timer;
 }
+void DashBoard::setVoitureDash(Voiture *voiture_dash)
+{
+    this->voiture_dash = voiture_dash;
+}
 
 void DashBoard::OnTimer(wxTimerEvent &event)
 {
@@ -81,14 +85,17 @@ void DashBoard::OnTimer(wxTimerEvent &event)
     {
         vitesse = 0;
     }
-
-    voiture_dash->setVitesse(vitesse);
-    UpdateSpeedDisplay();
+    if (voiture_dash->getCarburantActuel() > 0)
+    {
+        voiture_dash->setVitesse(vitesse);
+        UpdateSpeedDisplay();
+    }
 
     angleAiguille = -180 * ((voiture_dash->getVitesse() / voiture_dash->getVitesseMaximal()));
 
-    if (vitesse != 0 && !consommation_timer->IsRunning()) {
-        consommation_timer->Start(100); 
+    if (vitesse != 0 && !consommation_timer->IsRunning())
+    {
+        consommation_timer->Start(100);
     }
 
     event.Skip();
@@ -96,25 +103,26 @@ void DashBoard::OnTimer(wxTimerEvent &event)
 
 void DashBoard::consommationTimer(wxTimerEvent &event)
 {
-    cout << "Mise à jour consommation\n";
+    // cout << "Mise à jour consommation\n";
     double s = static_cast<double>(consommation_timer->GetInterval() / 1000.0);
     consommation_t += s;
 
     if (voiture_dash->getVitesse() > 0)
-    {   
-            voiture_dash->setCarburantActuel(voiture_dash->getCarburantActuel() - voiture_dash->getConsommation() * consommation_t);
+    {
+        voiture_dash->setCarburantActuel(voiture_dash->getCarburantMaximal() - voiture_dash->getConsommation() * consommation_t);
 
         int fuelPercent = static_cast<int>(voiture_dash->getCarburantActuel() /
                                            voiture_dash->getCarburantMaximal() * 100);
         fuelGauge->SetValue(fuelPercent);
-        cout << "Carburant: " << voiture_dash->getCarburantActuel() << " | Consommation " << consommation_t << endl;
+        // cout << "Carburant: " << voiture_dash->getCarburantActuel() << " | Consommation " << consommation_t << endl;
         fuelGauge->Refresh();
         fuelGauge->Update();
     }
-    else {
+    else
+    {
         // voiture_dash->setCarburantMaximal(voiture_dash->getCarburantActuel());
         consommation_timer->Stop();
-        consommation_t = 0;
+        // consommation_t = 0;
     }
 
     event.Skip();
@@ -125,7 +133,7 @@ void DashBoard::CreateFuelGauge()
     voiture_dash->setCarburantActuel(voiture_dash->getCarburantMaximal());
     fuelGauge = new wxGauge(this, wxID_ANY, 100, wxPoint(100, 450), wxSize(20, 300),
                             wxGA_VERTICAL); // Ajustement de la position et de la hauteur
-    fuelGauge->Refresh(); // Met à jour l'affichage immédiatement
+    fuelGauge->Refresh();                   // Met à jour l'affichage immédiatement
 }
 
 void DashBoard::OnPaint(wxPaintEvent &event)

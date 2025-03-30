@@ -31,8 +31,7 @@ int Evenement::getIdVoiture()
 
 void Evenement::setVitesseInitial(double vitesse)
 {
-    if (vitesse <= 0)
-        throw invalid_argument("La vitesse initiale doit être positive.");
+   
     this->vitesse_initial = vitesse;
 }
 
@@ -43,8 +42,7 @@ double Evenement::getVitesseInitial()
 
 void Evenement::setGamma(double gamma)
 {
-    if (gamma <= 0)
-        throw invalid_argument("Le gamma doit être positif.");
+   
     this->gamma = gamma;
 }
 
@@ -72,7 +70,6 @@ bool Evenement::save()
     // Ajout de l'ID dans la requête SQL
     string query = "INSERT INTO evenement (id, id_voiture, vitesse_initial, gamma, temp_debut) "
                    "VALUES (?, ?, ?, ?, ?)";
-
     try
     {
         if (!db)

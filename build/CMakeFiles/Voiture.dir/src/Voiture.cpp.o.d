@@ -1,7 +1,7 @@
 CMakeFiles/Voiture.dir/src/Voiture.cpp.o: \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/Voiture.cpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Voiture.cpp \
  /usr/include/stdc-predef.h \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include/Voiture.hpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/Voiture.hpp \
  /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -151,7 +151,7 @@ CMakeFiles/Voiture.dir/src/Voiture.cpp.o: \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc /usr/include/sqlite3.h \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include/UtilDb.hpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/UtilDb.hpp \
  /usr/include/c++/13/memory /usr/include/c++/13/bits/stl_tempbuf.h \
  /usr/include/c++/13/bits/stl_uninitialized.h \
  /usr/include/c++/13/bits/stl_raw_storage_iter.h \
@@ -171,7 +171,7 @@ CMakeFiles/Voiture.dir/src/Voiture.cpp.o: \
  /usr/include/c++/13/backward/auto_ptr.h \
  /usr/include/c++/13/pstl/glue_memory_defs.h \
  /usr/include/c++/13/pstl/execution_defs.h \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include/Evenement.hpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/Evenement.hpp \
  /usr/include/c++/13/vector /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc /usr/include/wx-3.2/wx/wx.h \

@@ -1,7 +1,7 @@
 CMakeFiles/Voiture.dir/src/UtilDb.cpp.o: \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/src/UtilDb.cpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/UtilDb.cpp \
  /usr/include/stdc-predef.h \
- /media/tsialonina/INFO/ITU/L2/S4/INF/Prog/C++/Voiture/include/UtilDb.hpp \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/UtilDb.hpp \
  /usr/include/sqlite3.h /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
  /usr/include/c++/13/memory /usr/include/c++/13/bits/memoryfwd.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
