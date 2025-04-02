@@ -410,4 +410,14 @@ CMakeFiles/Voiture.dir/src/DashBoad.cpp.o: \
  /usr/include/c++/13/bits/locale_facets_nonio.tcc \
  /usr/include/c++/13/bits/locale_conv.h \
  /usr/include/c++/13/bits/quoted_string.h /usr/include/c++/13/sstream \
- /usr/include/c++/13/bits/sstream.tcc /usr/include/wx-3.2/wx/dcbuffer.h
+ /usr/include/c++/13/bits/sstream.tcc \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/MainFrame.hpp \
+ /usr/include/wx-3.2/wx/combo.h /usr/include/wx-3.2/wx/renderer.h \
+ /usr/include/wx-3.2/wx/generic/combo.h \
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/DashBoard.hpp \
+ /usr/include/c++/13/map /usr/include/c++/13/bits/stl_tree.h \
+ /usr/include/c++/13/bits/stl_map.h \
+ /usr/include/c++/13/bits/stl_multimap.h /usr/include/c++/13/set \
+ /usr/include/c++/13/bits/stl_set.h \
+ /usr/include/c++/13/bits/stl_multiset.h \
+ /usr/include/wx-3.2/wx/dcbuffer.h

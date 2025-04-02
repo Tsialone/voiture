@@ -17,6 +17,7 @@ private:
     string model;
     double vitesse = 0.0;
     double gamma = 0.0;
+
     double carburant_actuel;
     vector<Evenement> events;
     double vitesse_initial = 0.0;
@@ -27,6 +28,10 @@ private:
     double consommation;
 
 public:
+    double consommation_t = 0.0;
+
+    double position =0.0;
+    double position_initial = 0.0;
     // Constructeurs
     Voiture();
     Voiture(int id, string model, double vitesse_maximal, double capacite_accelere, double capacite_freinage, double carburant_maximal, double consommation);
@@ -48,6 +53,10 @@ public:
     }
 
     vector<Evenement> getEventTuplet();
+    vector<wxStaticText *> event_text;
+
+    // void
+
     void addEvents(Evenement event);
 
     void setId(int id);
@@ -72,7 +81,7 @@ public:
 
     // CRUD Methods
     bool save();                     // Create
-    static Voiture getById(int id);  // Read by ID
+    static Voiture  * getById(int id);  // Read by ID
     static vector<Voiture> getAll(); // Read all
     bool update();                   // Update
     bool remove();                   // Delete

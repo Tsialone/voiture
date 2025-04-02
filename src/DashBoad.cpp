@@ -1,18 +1,22 @@
 #include "DashBoard.hpp"
 #include <iomanip>
 #include "Voiture.hpp"
+#include "MainFrame.hpp"
 #include <wx/dcbuffer.h>
 
-#define TIMER_MAIN 1000  // Identifiant unique pour timer
-#define TIMER_CONSO 1001 // Identifiant unique pour consommation_timer
+#define TIMER_MAIN 1000 // Identifiant unique pour timer
+#define TIMER_CONSO 1001
+#define TIMER_REPLAY 1002
 
 wxBEGIN_EVENT_TABLE(DashBoard, wxPanel)
     EVT_TIMER(TIMER_MAIN, DashBoard::OnTimer)
         EVT_TIMER(TIMER_CONSO, DashBoard::consommationTimer)
-            EVT_PAINT(DashBoard::OnPaint)
-                wxEND_EVENT_TABLE()
+            EVT_TIMER(TIMER_REPLAY, DashBoard::replayTimer)
 
-                    DashBoard::DashBoard(wxWindow *parent, Voiture *voiture)
+                EVT_PAINT(DashBoard::OnPaint)
+                    wxEND_EVENT_TABLE()
+
+                        DashBoard::DashBoard(wxWindow *parent, Voiture *voiture)
     : wxPanel(parent, wxID_ANY, wxPoint(450, 50), wxSize(1000, 800),
               wxBORDER_SIMPLE | wxNO_FULL_REPAINT_ON_RESIZE),
       angleAiguille(0)
@@ -27,20 +31,109 @@ wxBEGIN_EVENT_TABLE(DashBoard, wxPanel)
     oss << std::fixed << std::setprecision(2) << voiture_dash->getVitesse();
     std::string vitesse_label = oss.str();
     speed_display = new wxStaticText(this, wxID_ANY,
-                                     vitesse_label + "kmh",
+                                     vitesse_label + "km/h",
                                      wxPoint(420, 740),
                                      wxSize(300, 50));
-    speed_display->SetFont(font);
 
-    timer = new wxTimer(this, TIMER_MAIN);               // Timer principal
-    consommation_timer = new wxTimer(this, TIMER_CONSO); // Timer consommation
+    parcouru_display = new wxStaticText(this, wxID_ANY,
+                                        +"0.00km",
+                                        wxPoint(420, 640),
+                                        wxSize(300, 50));
+
+    parcouru_display->SetForegroundColour(*wxBLACK);
+    speed_display->SetFont(font);
+    parcouru_display->SetFont(font);
+
+    timer = new wxTimer(this, TIMER_MAIN);
+    consommation_timer = new wxTimer(this, TIMER_CONSO);
+    replay_timer = new wxTimer(this, TIMER_REPLAY);
 
     SetBackgroundStyle(wxBG_STYLE_PAINT);
     CreateFuelGauge();
 }
+int parseTime(const std::string &timeStr)
+{
+    std::tm tm = {}; // Initialisation à zéro
+    std::istringstream ss(timeStr);
+    ss >> std::get_time(&tm, "%H:%M:%S");                  // Parser HH:MM:SS
+    return tm.tm_hour * 3600 + tm.tm_min * 60 + tm.tm_sec; // Convertir en secondes
+}
+void DashBoard::replayTimer(wxTimerEvent &event)
+{
+    double s = static_cast<double>(replay_timer->GetInterval() / 1000.0);
+    replay_t += s;
+    // t +=s;
+
+    std::string time1 = m_allEv[m_currentIndex].getTempDebut();
+    std::string time2 = m_allEv[m_currentIndex + 1].getTempDebut();
+    int seconds1 = parseTime(time1);
+    int seconds2 = parseTime(time2);
+
+    int temp_t = seconds2 - seconds1;
+    double temp_gamma = m_allEv[m_currentIndex].getGamma();
+    double temp_v0 = m_allEv[m_currentIndex].getVitesseInitial();
+
+    voiture_dash->setVitesseInitial(temp_v0);
+    voiture_dash->setGamma(temp_gamma);
+
+    double vitesse = voiture_dash->getGamma() * replay_t + voiture_dash->getVitesseInital();
+
+    // cout << " vitesse initial  " << voiture_dash->getVitesseInital() << endl;
+    // cout << " vitesse miova " << vitesse << endl;
+    // cout << " gamma " << voiture_dash->getGamma() << "t: " << t << endl;
+
+    if (vitesse > voiture_dash->getVitesseMaximal())
+    {
+        vitesse = voiture_dash->getVitesseMaximal();
+    }
+    else if (vitesse < 0)
+    {
+        vitesse = 0;
+    }
+    if (voiture_dash->getCarburantActuel() > 0)
+    {
+        voiture_dash->setVitesse(vitesse);
+        UpdateSpeedDisplay();
+    }
+    angleAiguille = -180 * ((voiture_dash->getVitesse() / voiture_dash->getVitesseMaximal()));
+    t_enjehina = temp_t;
+    if (voiture_dash->getVitesse() > 0 && voiture_dash->getGamma() > 0)
+    {
+
+        voiture_dash->consommation_t += s;
+        // cout << "->hummm " << voiture_dash->getGamma() << endl;
+
+        voiture_dash->setCarburantActuel(voiture_dash->getCarburantMaximal() - voiture_dash->getConsommation() * voiture_dash->consommation_t);
+
+        int fuelPercent = static_cast<int>(
+            voiture_dash->getCarburantActuel() /
+            voiture_dash->getCarburantMaximal() * 100);
+        fuelGauge->SetValue(fuelPercent);
+        // cout << "Carburant: " << voiture_dash->getCarburantActuel() << " | Consommation " << consommation_t << endl;
+        fuelGauge->Refresh();
+        // fuelGauge->Update();
+    }
+
+    if (replay_t >= temp_t)
+    {
+        cout << "tafa enjika  " << replay_t << " " << voiture_dash->getVitesseInital() << endl;
+        replay_t = 0;
+        // replay_timer->Stop();
+        m_currentIndex++;
+    }
+    if (m_currentIndex >= m_allEv.size() - 1)
+    {
+        replay_timer->Stop();
+    }
+
+    cout << "difference: " << temp_t << " index: " << replay_t << endl;
+
+    //     break;
+}
 
 wxStaticText *DashBoard::getSpeedDisplay()
 {
+
     return this->speed_display;
 }
 
@@ -53,7 +146,16 @@ void DashBoard::UpdateSpeedDisplay()
 {
     std::ostringstream oss;
     oss << std::fixed << std::setprecision(2) << voiture_dash->getVitesse();
-    speed_display->SetLabel(oss.str() + "kmh");
+    speed_display->SetLabel(oss.str() + "km/h");
+    Refresh();
+}
+
+void DashBoard::UpdateParcouruDisplay()
+{
+    std::ostringstream oss;
+    // double distance_parcouru = (voiture_dash->getGamma() * t*t / 2)
+    oss << std::fixed << std::setprecision(2) << voiture_dash->position;
+    parcouru_display->SetLabel(oss.str() + "km  t:" +  to_string (parcouru_t));
     Refresh();
 }
 
@@ -75,7 +177,14 @@ void DashBoard::OnTimer(wxTimerEvent &event)
 {
     double s = static_cast<double>(timer->GetInterval() / 1000.0);
     t += s;
+    // cout << " gamma: " << voiture_dash->getGamma() << endl;
+
     double vitesse = voiture_dash->getGamma() * t + voiture_dash->getVitesseInital();
+    // double position = (t*t * voiture_dash->getGamma() / 2 ) + voiture_dash->position_initial + voiture_dash->getVitesseInital() * t;
+
+    cout << " vitesse initial  " << voiture_dash->getVitesseInital() << endl;
+    cout << " vitesse miova " << vitesse << endl;
+    cout << " gamma " << voiture_dash->getGamma() << "t: " << t << endl;
 
     if (vitesse > voiture_dash->getVitesseMaximal())
     {
@@ -85,17 +194,37 @@ void DashBoard::OnTimer(wxTimerEvent &event)
     {
         vitesse = 0;
     }
+
     if (voiture_dash->getCarburantActuel() > 0)
     {
         voiture_dash->setVitesse(vitesse);
+        if (!consommation_timer->IsRunning())
+        {
+            consommation_timer->Start(100);
+        }
+        // voiture_dash->position = position;
         UpdateSpeedDisplay();
+        // UpdateParcouruDisplay();
     }
 
     angleAiguille = -180 * ((voiture_dash->getVitesse() / voiture_dash->getVitesseMaximal()));
 
-    if (vitesse != 0 && !consommation_timer->IsRunning())
+    // cout << "gamma: " << voiture_dash->getGamma() << endl;
+    if (voiture_dash->getVitesse() > 0 && voiture_dash->getGamma() > 0)
     {
-        consommation_timer->Start(100);
+
+        voiture_dash->consommation_t += s;
+        // cout << "->hummm " << voiture_dash->getGamma() << endl;
+
+        voiture_dash->setCarburantActuel(voiture_dash->getCarburantMaximal() - voiture_dash->getConsommation() * voiture_dash->consommation_t);
+
+        int fuelPercent = static_cast<int>(
+            voiture_dash->getCarburantActuel() /
+            voiture_dash->getCarburantMaximal() * 100);
+        fuelGauge->SetValue(fuelPercent);
+        // cout << "Carburant: " << voiture_dash->getCarburantActuel() << " | Consommation " << consommation_t << endl;
+        fuelGauge->Refresh();
+        // fuelGauge->Update();
     }
 
     event.Skip();
@@ -104,28 +233,37 @@ void DashBoard::OnTimer(wxTimerEvent &event)
 void DashBoard::consommationTimer(wxTimerEvent &event)
 {
     // cout << "Mise à jour consommation\n";
-    double s = static_cast<double>(consommation_timer->GetInterval() / 1000.0);
-    consommation_t += s;
-
-    if (voiture_dash->getVitesse() > 0)
-    {
-        voiture_dash->setCarburantActuel(voiture_dash->getCarburantMaximal() - voiture_dash->getConsommation() * consommation_t);
-
-        int fuelPercent = static_cast<int>(voiture_dash->getCarburantActuel() /
-                                           voiture_dash->getCarburantMaximal() * 100);
-        fuelGauge->SetValue(fuelPercent);
-        // cout << "Carburant: " << voiture_dash->getCarburantActuel() << " | Consommation " << consommation_t << endl;
-        fuelGauge->Refresh();
-        fuelGauge->Update();
+    if  (voiture_dash->getVitesse() > 0) {
+        double s = static_cast<double>(consommation_timer->GetInterval() / 1000.0);
+        parcouru_t += s;
+        double vi = voiture_dash->getVitesseInital()  / 3600;
+        double a = (voiture_dash->getGamma()  / 3600);
+        double position = (parcouru_t * parcouru_t * a / 2) + (voiture_dash->position_initial + vi * parcouru_t);
+        voiture_dash->position = position;
+        // voiture_dash->position_initial = position;
+        UpdateParcouruDisplay();
     }
-    else
-    {
-        // voiture_dash->setCarburantMaximal(voiture_dash->getCarburantActuel());
-        consommation_timer->Stop();
-        // consommation_t = 0;
-    }
+   
 
-    event.Skip();
+    // if (voiture_dash->getVitesse() > 0 && voiture_dash->getGamma() > 0)
+    // {
+    //     voiture_dash->setCarburantActuel(voiture_dash->getCarburantMaximal() - voiture_dash->getConsommation() * consommation_t);
+
+    //     int fuelPercent = static_cast<int>(voiture_dash->getCarburantActuel() /
+    //                                        voiture_dash->getCarburantMaximal() * 100);
+    //     fuelGauge->SetValue(fuelPercent);
+    //     // cout << "Carburant: " << voiture_dash->getCarburantActuel() << " | Consommation " << consommation_t << endl;
+    //     fuelGauge->Refresh();
+    //     fuelGauge->Update();
+    // }
+    // else
+    // {
+    //     // voiture_dash->setCarburantMaximal(voiture_dash->getCarburantActuel());
+    //     consommation_timer->Stop();
+    //     // consommation_t = 0;
+    // }
+
+    // event.Skip();
 }
 
 void DashBoard::CreateFuelGauge()

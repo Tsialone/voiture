@@ -51,18 +51,64 @@ MainFrame::MainFrame(const wxString &title, Voiture *voiture, vector<Voiture *> 
 
     v_combo = new wxComboBox(this, COMBO_ID, "", wxPoint(1250, 10), wxSize(200, -1), choices, wxCB_READONLY);
     // dashboard->SetFocus();
+    // v_combo->Enable(false);
     dashboard->SetFocus();
     v_combo->Bind(wxEVT_COMBOBOX, &MainFrame::OnComboBoxSelect, this);
     v_combo->Bind(wxEVT_KEY_DOWN, &MainFrame::OnComboKeyDown, this);
+
+    wxButton *button = new wxButton(this, wxID_ANY, "Replay", wxPoint(50, 50), wxSize(150, 50));
+    button->Bind(wxEVT_BUTTON, &MainFrame::replay, this);
 }
 
-void MainFrame::OnClose(wxCloseEvent& event)
+
+void MainFrame::replay(wxCommandEvent &event)
+{
+
+    Evenement *temp_ev = new Evenement();
+
+    for (Evenement ev : temp_ev->getAll()) {
+        if (ev.getIdVoiture() == voiture->getId()) {
+            dashboard -> m_allEv.push_back(ev);
+        }
+    }
+    if (dashboard -> m_allEv.size() >= 2)
+    {
+        dashboard ->   m_currentIndex =0;
+        wxTimer *dash_timer = dashboard->replay_timer;
+        dash_timer->Start(100);
+    //     for (int i = 0; i < all_ev.capacity() - 1; i++)
+    //     {
+
+    //         if (all_ev[i].getIdVoiture() == voiture->getId())
+    //         {
+    //             std::string time1 = all_ev[i].getTempDebut();
+    //             std::string time2 = all_ev[i + 1].getTempDebut();
+    //             int seconds1 = parseTime(time1);
+    //             int seconds2 = parseTime(time2);
+
+    //             int temp_t = seconds2 - seconds1;
+    //             double temp_gamma = all_ev[i].getGamma();
+    //             double temp_v0 = all_ev[i].getVitesseInitial();
+
+    //             dash_timer->Start(100);
+    //             wxMilliSleep(temp_t * 1000);
+    //             wxYield();
+
+    //             cout << "difference: " << temp_t << " index: " << i << endl;
+    //             break;
+    //         }
+    //     }
+    }
+    // wxMessageBox("Bouton cliqué !", "Information", wxOK | wxICON_INFORMATION);
+}
+
+void MainFrame::OnClose(wxCloseEvent &event)
 {
     // 🔹 Met ici le code à exécuter avant la fermeture
     std::cout << "Fermeture de la fenêtre principale..." << std::endl;
 
     // Si tu veux libérer des ressources ou sauvegarder des données
-    UtilDb::closeCon();  
+    UtilDb::closeCon();
 
     // 🔹 Appelle event.Skip() pour permettre la fermeture
     event.Skip();
@@ -93,10 +139,24 @@ void MainFrame::OnComboBoxSelect(wxCommandEvent &event)
 
     wxString selectedName = v_combo->GetStringSelection();
     Voiture *value = options[selectedName];
-    voiture = value;
-    dashboard->setVoitureDash(value);
+    Voiture *temp = new Voiture();
+    temp = temp->getById(value->getId());
+    // Voiture xoxo ((*temp).getId(), (*temp).getModel(), (*temp).getVitesseMaximal(), (*temp).getCapaciteAccelere(), (*temp).getCapaciteFreinage(), (*temp).getCarburantMaximal(), (*temp).getConsommation());
+    voiture = temp;
+    dashboard->setVoitureDash(voiture);
+    dashboard->angleAiguille = -180 * ((voiture->getVitesse() / voiture->getVitesseMaximal()));
+    voiture->setCarburantActuel(voiture->getCarburantMaximal() - voiture->getConsommation() * voiture->consommation_t);
+
+    int fuelPercent = static_cast<int>(
+        voiture->getCarburantActuel() /
+        voiture->getCarburantMaximal() * 100);
+    dashboard->fuelGauge->SetValue(fuelPercent);
+
+    dashboard->fuelGauge->Update();
+    dashboard->fuelGauge->Refresh();
+
     dashboard->UpdateSpeedDisplay();
-    cout << "selectionne " << value->getModel() << endl;
+    // cout << "selectionne " << value->getModel() << endl;
     // dashboard->SetFocus();
     // event.Skip();
 }
@@ -114,8 +174,28 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
 {
 
     wxTimer *timer = dashboard->getTimer();
+    auto now = std::chrono::system_clock::now();
+    std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+    std::tm *local_time = std::localtime(&now_c);
+    int hour = local_time->tm_hour;
+    int minute = local_time->tm_min;
+    int second = local_time->tm_sec;
+    std::ostringstream oss;
+    oss << std::setw(2) << std::setfill('0') << hour << ":"
+        << std::setw(2) << std::setfill('0') << minute << ":"
+        << std::setw(2) << std::setfill('0') << second;
+    std::string my_time = oss.str();
+
+    int last_id = 0;
+    Evenement *temp_event = new Evenement();
+    for (Evenement ev : (*temp_event).getAll())
+    {
+        if (ev.getId() > last_id)
+            last_id = ev.getId();
+    }
+
     int keyCode = event.GetKeyCode();
-    m_currentlyPressedKeys.insert(keyCode); 
+    m_currentlyPressedKeys.insert(keyCode);
     double intensite = 0.0;
     double current = 0;
     Evenement *last_event = nullptr;
@@ -125,7 +205,7 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
 
         // last_event->save();
     }
-    double last = -1;
+    double last = 0;
     if (last_event != nullptr)
     {
         last = last_event->getGamma();
@@ -138,18 +218,21 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
     {
         // cout << "acceleration full" << endl;
         intensite = 1;
-        current = voiture->getCapaciteAccelere() * intensite;
-        // cout << "current "  << current << " last " << last << endl;
-        if (current != last)
-        {
-            dashboard->t = 0;
-            voiture->setVitesseInitial(voiture->getVitesse());
-        }
+        // current = voiture->getCapaciteAccelere() * intensite;
+        // if (current != last)
+        // {
+        //     // cout << " ato foana " << endl;
+        //     // voiture->setVitesseInitial(voiture->getVitesse());
+        //     // cout << " changement de vitesse initial " <<   voiture->getVitesseInital()  << " current " << current << " last " << last <<endl;
+        // }
         if (!timer->IsRunning())
         {
+
             voiture->setGamma(voiture->getCapaciteAccelere() * intensite);
-            voiture->addEvents(Evenement(1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), "xxx"));
-            // Evenement last_event = voiture->getEventTuplet().back();
+            voiture->addEvents(Evenement(last_id + 1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), my_time));
+            Evenement last_event = voiture->getEventTuplet().back();
+            last_event.save();
+
             timer->Start(100);
         }
     }
@@ -157,18 +240,19 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
     {
         // cout << "acceleration 1" << endl;
         intensite = 10.0 / 100.0;
-        current = voiture->getCapaciteAccelere() * intensite;
-        if (current != last)
-        {
-            dashboard->t = 0;
-            voiture->setVitesseInitial(voiture->getVitesse());
-        }
+        // current = voiture->getCapaciteAccelere() * intensite;
+        // if (current != last)
+        // {
+        //     dashboard->t = 0;
+        //     voiture->setVitesseInitial(voiture->getVitesse());
+        // }
         if (!timer->IsRunning())
         {
             voiture->setGamma(voiture->getCapaciteAccelere() * intensite);
             // voiture->setVitesseInitial(voiture->getVitesse());
-            // voiture->addEvents(Evenement(1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), "xxx"));
-            // Evenement last_event = voiture->getEventTuplet().back();
+            voiture->addEvents(Evenement(last_id + 1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), my_time));
+            Evenement last_event = voiture->getEventTuplet().back();
+            last_event.save();
             timer->Start(100);
         }
     }
@@ -176,18 +260,19 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
     {
         // cout << "acceleration 2" << endl;
         intensite = 20.0 / 100.0;
-        current = voiture->getCapaciteAccelere() * intensite;
-        if (current != last)
-        {
-            dashboard->t = 0;
-            voiture->setVitesseInitial(voiture->getVitesse());
-        }
+        // current = voiture->getCapaciteAccelere() * intensite;
+        // if (current != last)
+        // {
+        //     dashboard->t = 0;
+        //     voiture->setVitesseInitial(voiture->getVitesse());
+        // }
         if (!timer->IsRunning())
         {
             voiture->setGamma(voiture->getCapaciteAccelere() * intensite);
             // voiture->setVitesseInitial(voiture->getVitesse());
-            // voiture->addEvents(Evenement(1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), "xxx"));
-            // Evenement last_event = voiture->getEventTuplet().back();
+            voiture->addEvents(Evenement(last_id + 1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), my_time));
+            Evenement last_event = voiture->getEventTuplet().back();
+            last_event.save();
             timer->Start(100);
         }
     }
@@ -195,17 +280,18 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
     {
         // cout << "freinage full" << endl;
         intensite = 1;
-        current = voiture->getCapaciteFreinage() * intensite;
-        if (current != last)
-        {
-            dashboard->t = 0;
-            voiture->setVitesseInitial(voiture->getVitesse());
-        }
+        // current = voiture->getCapaciteFreinage() * intensite;
+        // if (current != last)
+        // {
+        //     dashboard->t = 0;
+        //     voiture->setVitesseInitial(voiture->getVitesse());
+        // }
         if (!timer->IsRunning())
         {
             voiture->setGamma(-voiture->getCapaciteFreinage() * intensite);
-            // voiture->addEvents(Evenement(1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), "xxx"));
-            // Evenement last_event = voiture->getEventTuplet().back();
+            voiture->addEvents(Evenement(last_id + 1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), my_time));
+            Evenement last_event = voiture->getEventTuplet().back();
+            last_event.save();
             timer->Start(100);
         }
     }
@@ -213,18 +299,19 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
     {
         // cout << "freinage 1" << endl;
         intensite = 10.0 / 100.0;
-        current = voiture->getCapaciteFreinage() * intensite;
-        if (current != last)
-        {
-            dashboard->t = 0;
-            voiture->setVitesseInitial(voiture->getVitesse());
-        }
+        // current = voiture->getCapaciteFreinage() * intensite;
+        // if (current != last)
+        // {
+        //     dashboard->t = 0;
+        //     voiture->setVitesseInitial(voiture->getVitesse());
+        // }
         if (!timer->IsRunning())
         {
             voiture->setGamma(-voiture->getCapaciteFreinage() * intensite);
             // voiture->setVitesseInitial(voiture->getVitesse());
-            // voiture->addEvents(Evenement(1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), "xxx"));
-            // Evenement last_event = voiture->getEventTuplet().back();
+            voiture->addEvents(Evenement(last_id + 1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), my_time));
+            Evenement last_event = voiture->getEventTuplet().back();
+            last_event.save();
             timer->Start(100);
         }
     }
@@ -232,19 +319,19 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
     {
         // cout << "freinage 2" << endl;
         intensite = 20.0 / 100.0;
-        current = voiture->getCapaciteFreinage() * intensite;
-        if (current != last)
-        {
-            dashboard->t = 0;
-            voiture->setVitesseInitial(voiture->getVitesse());
-        }
+        // current = voiture->getCapaciteFreinage() * intensite;
+        // if (current != last)
+        // {
+        //     dashboard->t = 0;
+        //     voiture->setVitesseInitial(voiture->getVitesse());
+        // }
         if (!timer->IsRunning())
         {
             voiture->setGamma(-voiture->getCapaciteFreinage() * intensite);
             // voiture->setVitesseInitial(voiture->getVitesse());
-
-            // voiture->addEvents(Evenement(1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), "09:10:01"));
-            // Evenement last_event = voiture->getEventTuplet().back();
+            voiture->addEvents(Evenement(last_id + 1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), my_time));
+            Evenement last_event = voiture->getEventTuplet().back();
+            last_event.save();
 
             timer->Start(100);
         }
@@ -253,144 +340,65 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
     event.Skip();
 }
 
-void MainFrame::OnKeyUp(wxKeyEvent &event) {
-    
-
+void MainFrame::OnKeyUp(wxKeyEvent &event)
+{
     int keyCode = event.GetKeyCode();
-    m_currentlyPressedKeys.erase(keyCode); 
+    vector<char> command = {'F', '1', '2', '3'};
+    auto now = std::chrono::system_clock::now();
+    std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+    std::tm *local_time = std::localtime(&now_c);
+    int hour = local_time->tm_hour;
+    int minute = local_time->tm_min;
+    int second = local_time->tm_sec;
+    std::ostringstream oss;
+    oss << std::setw(2) << std::setfill('0') << hour << ":"
+        << std::setw(2) << std::setfill('0') << minute << ":"
+        << std::setw(2) << std::setfill('0') << second;
+    std::string my_time = oss.str();
 
-    if (m_currentlyPressedKeys.empty()) {
-        cout << "enregistrement event (une seule fois)" << endl;
-        
-        wxTimer* timer = dashboard->getTimer();
-        Evenement* temp_event = new Evenement();
+    bool contains = find(command.begin(), command.end(), keyCode) != command.end();
+    // m_currentlyPressedKeys.erase(keyCode);
+    if (contains && (wxGetKeyState(WXK_UP) || wxGetKeyState(WXK_DOWN)))
+    {
+
+        cout << " sa vitesse initial  " << voiture->getVitesseInital() << endl;
         int last_id = 0;
-        
-        for (Evenement ev : (*temp_event).getAll()) {
-            if (ev.getId() > last_id) last_id = ev.getId();
+        Evenement *temp_event = new Evenement();
+        for (Evenement ev : (*temp_event).getAll())
+        {
+            if (ev.getId() > last_id)
+                last_id = ev.getId();
         }
-        
-        voiture->addEvents(Evenement(last_id + 1, voiture->getId(), 
-                                   voiture->getVitesseInital(), 
-                                   voiture->getGamma(), "09:10:01"));
-        
-        voiture->getEventTuplet().back().save();
+
+        double current = voiture->getGamma();
+        voiture->setGamma(0);
+        voiture->addEvents(Evenement(last_id + 1, voiture->getId(), voiture->getVitesse(), voiture->getGamma(), my_time));
+        Evenement last_event = voiture->getEventTuplet().back();
+        last_event.save();
+
+        Evenement *last_ev = nullptr;
+        if (voiture->getEventTuplet().capacity() > 0)
+        {
+            last_ev = &voiture->getEventTuplet().back();
+            // last_event->save();
+        }
+        double last = 0;
+        if (last_ev != nullptr)
+        {
+            last = last_ev->getGamma();
+        }
+
+        cout << "current " << current << " last " << last << endl;
+        if (current != last)
+        {
+            voiture->setVitesseInitial(voiture->getVitesse());
+            voiture->position_initial = voiture->position;
+            // dashboard->parcouru_t = 0;
+            // dashboard->t = 0;
+        }
     }
-    // dashboard->SetFocus();
+
+    dashboard->SetFocus();
     dashboard->getTimer()->Stop();
     event.Skip();
-    // event.Skip(); // Décommentez si nécessaire
 }
-
-// void MainFrame::OnKeyEvent(wxKeyEvent &event)
-// {
-
-//     auto now = std::chrono::system_clock::now();
-//     std::time_t now_time = std::chrono::system_clock::to_time_t(now);
-
-//     std::tm local_time = *std::localtime(&now_time);
-//     // std::cout << "Heure actuelle: "
-//     //           << std::setfill('0') << std::setw(2) << local_time.tm_hour << ":"
-//     //           << std::setfill('0') << std::setw(2) << local_time.tm_min << ":"
-//     //           << std::setfill('0') << std::setw(2) << local_time.tm_sec
-//     //           << std::endl;
-
-//     int keyCode = event.GetKeyCode();
-//     const wxEventType eventType = event.GetEventType();
-//     double current = 0;
-//     double last = -1;
-//     double intesite = 0.0;
-//     wxTimer *timer = dashboard->getTimer();
-
-//     voiture->addEvents(Evenement(1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), "xxx"));
-//     Evenement last_event = voiture->getEventTuplet().back();
-
-//     // if (keyCode == '1' && wxGetKeyState(WXK_DOWN))
-//     // {
-//         // intesite = 10.0/100.0;
-//         // voiture->setGamma(-1 * voiture->getCapaciteFreinage() * intesite);
-//         // current = voiture->getGamma();
-//         // last = last_event.getGamma();
-//         // if (current != last)
-//         // {
-//         //     voiture->setVitesseInitial(voiture->getVitesse());
-//         //     dashboard->t = 0;
-//         //     timer->Start(100);
-//         // }
-//         // cout << "Freinage activé (Down+1) " <<  voiture->getGamma()  << endl;
-//     // }
-//     //    else  if (keyCode == '2' && wxGetKeyState(WXK_DOWN))
-//     //     {
-//     //         intesite = 20.0/100.0;
-//     //         voiture->setGamma(-1 * voiture->getCapaciteFreinage() * intesite);
-//     //         current = voiture->getGamma();
-//     //         last = last_event.getGamma();
-//     //         if (current != last)
-//     //         {
-//     //             voiture->setVitesseInitial(voiture->getVitesse());
-//     //             dashboard->t = 0;
-//     //             timer->Start(100);
-//     //         }
-//     //         cout << "Freinage activé (Down+2) " <<    voiture->getGamma()  << endl;
-//     //     }
-//     //     else  if (keyCode == 'F' && wxGetKeyState(WXK_DOWN))
-//     //     {
-//     //         intesite = 1;
-//     //         voiture->setGamma(-1 * voiture->getCapaciteFreinage() * intesite);
-//     //         current = voiture->getGamma();
-//     //         last = last_event.getGamma();
-//     //         if (current != last)
-//     //         {
-//     //             voiture->setVitesseInitial(voiture->getVitesse());
-//     //             dashboard->t = 0;
-//     //             timer->Start(100);
-//     //         }
-//     //         cout << "Freinage activé (Down+2 )" <<    voiture->getGamma()  << endl;
-//     //     }
-//     //     else if (keyCode == '1' && wxGetKeyState(WXK_UP)) {
-//     //         intesite = 10.0/100.0;
-//     //         voiture->setGamma(voiture->getCapaciteFreinage()  * intesite);
-//     //         current = voiture->getGamma();
-//     //         last = last_event.getGamma();
-//     //         if (current != last)
-//     //         {
-//     //             voiture->setVitesseInitial(voiture->getVitesse());
-//     //             dashboard->t = 0;
-//     //             timer->Start(100);
-//     //         }
-//     //         cout << "Freinage activé (Up+1) " <<    voiture->getGamma()  << endl;
-
-//     //     }
-//     //     else if (keyCode == '2' && wxGetKeyState(WXK_UP)) {
-//     //         intesite = 20.0/100.0;
-//     //         voiture->setGamma(voiture->getCapaciteFreinage()  * intesite);
-//     //         current = voiture->getGamma();
-//     //         last = last_event.getGamma();
-//     //         if (current != last)
-//     //         {
-//     //             voiture->setVitesseInitial(voiture->getVitesse());
-//     //             dashboard->t = 0;
-//     //             timer->Start(100);
-//     //         }
-//     //         cout << "Freinage activé (Up+2) " <<   voiture->getGamma() << endl;
-
-//     //     }
-//     // else if (keyCode == 'F' && wxGetKeyState(WXK_UP)) {
-//     //     intesite = 1;
-//     //     voiture->setGamma(voiture->getCapaciteFreinage()  * intesite);
-//     //     current = voiture->getGamma();
-//     //     last = last_event.getGamma();
-//     //     if (current != last)
-//     //     {
-//     //         voiture->setVitesseInitial(voiture->getVitesse());
-//     //         dashboard->t = 0;
-//     //         timer->Start(100);
-//     //     }
-//     //     cout << "Freinage activé (Up+f) " <<  voiture->getGamma() <<endl;
-
-//     // }
-
-//     dashboard->Refresh();
-//     this->Refresh();
-//     event.Skip(); // Important !
-// }

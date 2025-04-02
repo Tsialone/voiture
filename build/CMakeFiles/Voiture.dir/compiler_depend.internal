@@ -5,6 +5,7 @@ CMakeFiles/Voiture.dir/src/DashBoad.cpp.o
  /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/DashBoad.cpp
  /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/DashBoard.hpp
  /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/Evenement.hpp
+ /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/MainFrame.hpp
  /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/UtilDb.hpp
  /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/include/Voiture.hpp
  /usr/include/alloca.h
@@ -90,10 +91,15 @@ CMakeFiles/Voiture.dir/src/DashBoad.cpp.o
  /usr/include/c++/13/bits/stl_iterator.h
  /usr/include/c++/13/bits/stl_iterator_base_funcs.h
  /usr/include/c++/13/bits/stl_iterator_base_types.h
+ /usr/include/c++/13/bits/stl_map.h
+ /usr/include/c++/13/bits/stl_multimap.h
+ /usr/include/c++/13/bits/stl_multiset.h
  /usr/include/c++/13/bits/stl_pair.h
  /usr/include/c++/13/bits/stl_raw_storage_iter.h
  /usr/include/c++/13/bits/stl_relops.h
+ /usr/include/c++/13/bits/stl_set.h
  /usr/include/c++/13/bits/stl_tempbuf.h
+ /usr/include/c++/13/bits/stl_tree.h
  /usr/include/c++/13/bits/stl_uninitialized.h
  /usr/include/c++/13/bits/stl_vector.h
  /usr/include/c++/13/bits/stream_iterator.h
@@ -139,6 +145,7 @@ CMakeFiles/Voiture.dir/src/DashBoad.cpp.o
  /usr/include/c++/13/iterator
  /usr/include/c++/13/limits
  /usr/include/c++/13/locale
+ /usr/include/c++/13/map
  /usr/include/c++/13/math.h
  /usr/include/c++/13/memory
  /usr/include/c++/13/new
@@ -147,6 +154,7 @@ CMakeFiles/Voiture.dir/src/DashBoad.cpp.o
  /usr/include/c++/13/pstl/glue_algorithm_defs.h
  /usr/include/c++/13/pstl/glue_memory_defs.h
  /usr/include/c++/13/pstl/pstl_config.h
+ /usr/include/c++/13/set
  /usr/include/c++/13/sstream
  /usr/include/c++/13/stdexcept
  /usr/include/c++/13/stdlib.h
@@ -233,6 +241,7 @@ CMakeFiles/Voiture.dir/src/DashBoad.cpp.o
  /usr/include/wx-3.2/wx/clntdata.h
  /usr/include/wx-3.2/wx/cmdargs.h
  /usr/include/wx-3.2/wx/colour.h
+ /usr/include/wx-3.2/wx/combo.h
  /usr/include/wx-3.2/wx/combobox.h
  /usr/include/wx-3.2/wx/compiler.h
  /usr/include/wx-3.2/wx/containr.h
@@ -270,6 +279,7 @@ CMakeFiles/Voiture.dir/src/DashBoad.cpp.o
  /usr/include/wx-3.2/wx/gdiobj.h
  /usr/include/wx-3.2/wx/generic/accel.h
  /usr/include/wx-3.2/wx/generic/choicdgg.h
+ /usr/include/wx-3.2/wx/generic/combo.h
  /usr/include/wx-3.2/wx/generic/icon.h
  /usr/include/wx-3.2/wx/generic/logg.h
  /usr/include/wx-3.2/wx/generic/msgdlgg.h
@@ -379,6 +389,7 @@ CMakeFiles/Voiture.dir/src/DashBoad.cpp.o
  /usr/include/wx-3.2/wx/radiobox.h
  /usr/include/wx-3.2/wx/radiobut.h
  /usr/include/wx-3.2/wx/region.h
+ /usr/include/wx-3.2/wx/renderer.h
  /usr/include/wx-3.2/wx/rtti.h
  /usr/include/wx-3.2/wx/scopedptr.h
  /usr/include/wx-3.2/wx/scopeguard.h

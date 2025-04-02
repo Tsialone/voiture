@@ -167,9 +167,9 @@ bool Voiture::save()
 }
 
 // ========================== MÉTHODE `getById()` ==========================
-Voiture Voiture::getById(int id)
+Voiture  * Voiture::getById(int id)
 {
-    Voiture voiture;
+    Voiture * voiture = new Voiture();
     sqlite3 *db = UtilDb::getCon();
     sqlite3_stmt *stmt;
 
@@ -187,13 +187,13 @@ Voiture Voiture::getById(int id)
 
         if (sqlite3_step(stmt) == SQLITE_ROW)
         {
-            voiture.setId(sqlite3_column_int(stmt, 0));
-            voiture.setModel(reinterpret_cast<const char *>(sqlite3_column_text(stmt, 1)));
-            voiture.setVitesseMaximal(sqlite3_column_double(stmt, 2));
-            voiture.setCapaciteAccelere(sqlite3_column_double(stmt, 3));
-            voiture.setCapaciteFreinage(sqlite3_column_double(stmt, 4));
-            voiture.setCarburantMaximal(sqlite3_column_double(stmt, 5));
-            voiture.setConsommation(sqlite3_column_double(stmt, 6));
+            (*voiture).setId(sqlite3_column_int(stmt, 0));
+            (*voiture).setModel(reinterpret_cast<const char *>(sqlite3_column_text(stmt, 1)));
+            (*voiture).setVitesseMaximal(sqlite3_column_double(stmt, 2));
+            (*voiture).setCapaciteAccelere(sqlite3_column_double(stmt, 3));
+            (*voiture).setCapaciteFreinage(sqlite3_column_double(stmt, 4));
+            (*voiture).setCarburantMaximal(sqlite3_column_double(stmt, 5));
+            (*voiture).setConsommation(sqlite3_column_double(stmt, 6));
         }
 
         sqlite3_finalize(stmt);

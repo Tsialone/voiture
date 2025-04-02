@@ -9,6 +9,7 @@ using namespace std;
 class MainFrame : public wxFrame
 {
 public:
+   
     MainFrame(const wxString &title, Voiture *voiture, vector<Voiture *> all_ptr_car);
     Voiture *getVoiture();
     void setVoiture(Voiture *voiture);
@@ -20,8 +21,11 @@ public:
     vector<Voiture *> getAllPtrCar();
     void setAllPtrCar(vector<Voiture *> all_ptr_car);
     set<int> m_currentlyPressedKeys;
+    void OnReplayTimer(wxTimerEvent& event);
+
 private:
     void OnClose(wxCloseEvent &event);
+    void replay(wxCommandEvent &event);
     void OnComboBoxSelect(wxCommandEvent &event);
     vector<Voiture *> all_ptr_car;
     DashBoard *dashboard;
