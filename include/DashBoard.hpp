@@ -12,8 +12,7 @@ public:
     double t_enjehina = 0.0;
     double replay_t = 0.0;
     wxTimer *replay_timer;
-
-    int m_currentIndex;
+     int m_currentIndex;
     vector<Evenement> m_allEv;
 
     // double consommation_t = 0.0;
@@ -30,7 +29,7 @@ public:
     void CreateFuelGauge();
     wxTimer *consommation_timer;
     wxStaticText *parcouru_display;
-    double parcouru_t =0.0;
+    double parcouru_t = 0.0;
 
 private:
     Voiture *voiture_dash;

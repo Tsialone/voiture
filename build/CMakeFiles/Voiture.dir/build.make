@@ -73,85 +73,85 @@ CMakeFiles/Voiture.dir/src/DashBoad.cpp.o: CMakeFiles/Voiture.dir/flags.make
 CMakeFiles/Voiture.dir/src/DashBoad.cpp.o: /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/DashBoad.cpp
 CMakeFiles/Voiture.dir/src/DashBoad.cpp.o: CMakeFiles/Voiture.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Voiture.dir/src/DashBoad.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Voiture.dir/src/DashBoad.cpp.o -MF CMakeFiles/Voiture.dir/src/DashBoad.cpp.o.d -o CMakeFiles/Voiture.dir/src/DashBoad.cpp.o -c /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/DashBoad.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Voiture.dir/src/DashBoad.cpp.o -MF CMakeFiles/Voiture.dir/src/DashBoad.cpp.o.d -o CMakeFiles/Voiture.dir/src/DashBoad.cpp.o -c /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/DashBoad.cpp
 
 CMakeFiles/Voiture.dir/src/DashBoad.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Voiture.dir/src/DashBoad.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/DashBoad.cpp > CMakeFiles/Voiture.dir/src/DashBoad.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/DashBoad.cpp > CMakeFiles/Voiture.dir/src/DashBoad.cpp.i
 
 CMakeFiles/Voiture.dir/src/DashBoad.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Voiture.dir/src/DashBoad.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/DashBoad.cpp -o CMakeFiles/Voiture.dir/src/DashBoad.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/DashBoad.cpp -o CMakeFiles/Voiture.dir/src/DashBoad.cpp.s
 
 CMakeFiles/Voiture.dir/src/Evenement.cpp.o: CMakeFiles/Voiture.dir/flags.make
 CMakeFiles/Voiture.dir/src/Evenement.cpp.o: /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Evenement.cpp
 CMakeFiles/Voiture.dir/src/Evenement.cpp.o: CMakeFiles/Voiture.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Voiture.dir/src/Evenement.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Voiture.dir/src/Evenement.cpp.o -MF CMakeFiles/Voiture.dir/src/Evenement.cpp.o.d -o CMakeFiles/Voiture.dir/src/Evenement.cpp.o -c /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Evenement.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Voiture.dir/src/Evenement.cpp.o -MF CMakeFiles/Voiture.dir/src/Evenement.cpp.o.d -o CMakeFiles/Voiture.dir/src/Evenement.cpp.o -c /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Evenement.cpp
 
 CMakeFiles/Voiture.dir/src/Evenement.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Voiture.dir/src/Evenement.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Evenement.cpp > CMakeFiles/Voiture.dir/src/Evenement.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Evenement.cpp > CMakeFiles/Voiture.dir/src/Evenement.cpp.i
 
 CMakeFiles/Voiture.dir/src/Evenement.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Voiture.dir/src/Evenement.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Evenement.cpp -o CMakeFiles/Voiture.dir/src/Evenement.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Evenement.cpp -o CMakeFiles/Voiture.dir/src/Evenement.cpp.s
 
 CMakeFiles/Voiture.dir/src/MainFrame.cpp.o: CMakeFiles/Voiture.dir/flags.make
 CMakeFiles/Voiture.dir/src/MainFrame.cpp.o: /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/MainFrame.cpp
 CMakeFiles/Voiture.dir/src/MainFrame.cpp.o: CMakeFiles/Voiture.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Voiture.dir/src/MainFrame.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Voiture.dir/src/MainFrame.cpp.o -MF CMakeFiles/Voiture.dir/src/MainFrame.cpp.o.d -o CMakeFiles/Voiture.dir/src/MainFrame.cpp.o -c /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/MainFrame.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Voiture.dir/src/MainFrame.cpp.o -MF CMakeFiles/Voiture.dir/src/MainFrame.cpp.o.d -o CMakeFiles/Voiture.dir/src/MainFrame.cpp.o -c /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/MainFrame.cpp
 
 CMakeFiles/Voiture.dir/src/MainFrame.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Voiture.dir/src/MainFrame.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/MainFrame.cpp > CMakeFiles/Voiture.dir/src/MainFrame.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/MainFrame.cpp > CMakeFiles/Voiture.dir/src/MainFrame.cpp.i
 
 CMakeFiles/Voiture.dir/src/MainFrame.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Voiture.dir/src/MainFrame.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/MainFrame.cpp -o CMakeFiles/Voiture.dir/src/MainFrame.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/MainFrame.cpp -o CMakeFiles/Voiture.dir/src/MainFrame.cpp.s
 
 CMakeFiles/Voiture.dir/src/UtilDb.cpp.o: CMakeFiles/Voiture.dir/flags.make
 CMakeFiles/Voiture.dir/src/UtilDb.cpp.o: /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/UtilDb.cpp
 CMakeFiles/Voiture.dir/src/UtilDb.cpp.o: CMakeFiles/Voiture.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Voiture.dir/src/UtilDb.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Voiture.dir/src/UtilDb.cpp.o -MF CMakeFiles/Voiture.dir/src/UtilDb.cpp.o.d -o CMakeFiles/Voiture.dir/src/UtilDb.cpp.o -c /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/UtilDb.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Voiture.dir/src/UtilDb.cpp.o -MF CMakeFiles/Voiture.dir/src/UtilDb.cpp.o.d -o CMakeFiles/Voiture.dir/src/UtilDb.cpp.o -c /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/UtilDb.cpp
 
 CMakeFiles/Voiture.dir/src/UtilDb.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Voiture.dir/src/UtilDb.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/UtilDb.cpp > CMakeFiles/Voiture.dir/src/UtilDb.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/UtilDb.cpp > CMakeFiles/Voiture.dir/src/UtilDb.cpp.i
 
 CMakeFiles/Voiture.dir/src/UtilDb.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Voiture.dir/src/UtilDb.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/UtilDb.cpp -o CMakeFiles/Voiture.dir/src/UtilDb.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/UtilDb.cpp -o CMakeFiles/Voiture.dir/src/UtilDb.cpp.s
 
 CMakeFiles/Voiture.dir/src/Voiture.cpp.o: CMakeFiles/Voiture.dir/flags.make
 CMakeFiles/Voiture.dir/src/Voiture.cpp.o: /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Voiture.cpp
 CMakeFiles/Voiture.dir/src/Voiture.cpp.o: CMakeFiles/Voiture.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Voiture.dir/src/Voiture.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Voiture.dir/src/Voiture.cpp.o -MF CMakeFiles/Voiture.dir/src/Voiture.cpp.o.d -o CMakeFiles/Voiture.dir/src/Voiture.cpp.o -c /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Voiture.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Voiture.dir/src/Voiture.cpp.o -MF CMakeFiles/Voiture.dir/src/Voiture.cpp.o.d -o CMakeFiles/Voiture.dir/src/Voiture.cpp.o -c /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Voiture.cpp
 
 CMakeFiles/Voiture.dir/src/Voiture.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Voiture.dir/src/Voiture.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Voiture.cpp > CMakeFiles/Voiture.dir/src/Voiture.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Voiture.cpp > CMakeFiles/Voiture.dir/src/Voiture.cpp.i
 
 CMakeFiles/Voiture.dir/src/Voiture.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Voiture.dir/src/Voiture.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Voiture.cpp -o CMakeFiles/Voiture.dir/src/Voiture.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/Voiture.cpp -o CMakeFiles/Voiture.dir/src/Voiture.cpp.s
 
 CMakeFiles/Voiture.dir/src/main.cpp.o: CMakeFiles/Voiture.dir/flags.make
 CMakeFiles/Voiture.dir/src/main.cpp.o: /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/main.cpp
 CMakeFiles/Voiture.dir/src/main.cpp.o: CMakeFiles/Voiture.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Voiture.dir/src/main.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Voiture.dir/src/main.cpp.o -MF CMakeFiles/Voiture.dir/src/main.cpp.o.d -o CMakeFiles/Voiture.dir/src/main.cpp.o -c /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/main.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Voiture.dir/src/main.cpp.o -MF CMakeFiles/Voiture.dir/src/main.cpp.o.d -o CMakeFiles/Voiture.dir/src/main.cpp.o -c /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/main.cpp
 
 CMakeFiles/Voiture.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Voiture.dir/src/main.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/main.cpp > CMakeFiles/Voiture.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/main.cpp > CMakeFiles/Voiture.dir/src/main.cpp.i
 
 CMakeFiles/Voiture.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Voiture.dir/src/main.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/main.cpp -o CMakeFiles/Voiture.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/tsialonina/MyBuntu/ITU/L2/S4/INF/Prog/C++/Voiture/src/main.cpp -o CMakeFiles/Voiture.dir/src/main.cpp.s
 
 # Object files for target Voiture
 Voiture_OBJECTS = \

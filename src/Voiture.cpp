@@ -3,7 +3,7 @@
 Voiture::Voiture() : id(0), vitesse_maximal(0.0), capacite_accelere(0.0), capacite_freinage(0.0), carburant_maximal(0.0), consommation(0.0) {}
 
 Voiture::Voiture(int id, string model, double vitesse_maximal, double capacite_accelere, double capacite_freinage, double carburant_maximal, double consommation)
-    : id(id), model(model), vitesse_maximal(vitesse_maximal), capacite_accelere(capacite_accelere), capacite_freinage(capacite_freinage), carburant_maximal(carburant_maximal), consommation(consommation) {}
+    : id(id), model(model), vitesse_maximal(vitesse_maximal), capacite_accelere(capacite_accelere), capacite_freinage(capacite_freinage), carburant_maximal(carburant_maximal), consommation(consommation)  , conso_fixe (consommation)  , fixe_gamma_ac (capacite_accelere)   , fixe_gamma_fg(capacite_freinage) {}
 
 void Voiture::setId(int id)
 {
@@ -90,8 +90,6 @@ double Voiture::getCapaciteAccelere()
 
 void Voiture::setCapaciteFreinage(double capacite)
 {
-    if (capacite <= 0)
-        throw invalid_argument("La capacité de freinage doit être positive.");
     this->capacite_freinage = capacite;
 }
 
@@ -114,8 +112,7 @@ double Voiture::getCarburantMaximal()
 
 void Voiture::setConsommation(double consommation)
 {
-    if (consommation <= 0)
-        throw invalid_argument("La consommation doit être positive.");
+ 
     this->consommation = consommation;
 }
 

@@ -60,44 +60,53 @@ MainFrame::MainFrame(const wxString &title, Voiture *voiture, vector<Voiture *> 
     button->Bind(wxEVT_BUTTON, &MainFrame::replay, this);
 }
 
-
 void MainFrame::replay(wxCommandEvent &event)
 {
 
     Evenement *temp_ev = new Evenement();
+    dashboard-> m_allEv.clear();
 
-    for (Evenement ev : temp_ev->getAll()) {
-        if (ev.getIdVoiture() == voiture->getId()) {
-            dashboard -> m_allEv.push_back(ev);
+    for (Evenement ev : temp_ev->getAll())
+    {
+        if (ev.getIdVoiture() == voiture->getId())
+        {
+            // voiture  =  
+            dashboard->m_allEv.push_back(ev);
         }
     }
-    if (dashboard -> m_allEv.size() >= 2)
+    if (dashboard->m_allEv.size() >= 2)
     {
-        dashboard ->   m_currentIndex =0;
+        // voiture->consommation_t = 0;
+        dashboard->m_currentIndex = 0.0;
+        voiture->consommation_t = 0.0;
+        voiture->carburant_consomme = 0.0;
+        dashboard->replay_t = 0.0;
+
+
         wxTimer *dash_timer = dashboard->replay_timer;
         dash_timer->Start(100);
-    //     for (int i = 0; i < all_ev.capacity() - 1; i++)
-    //     {
+        //     for (int i = 0; i < all_ev.capacity() - 1; i++)
+        //     {
 
-    //         if (all_ev[i].getIdVoiture() == voiture->getId())
-    //         {
-    //             std::string time1 = all_ev[i].getTempDebut();
-    //             std::string time2 = all_ev[i + 1].getTempDebut();
-    //             int seconds1 = parseTime(time1);
-    //             int seconds2 = parseTime(time2);
+        //         if (all_ev[i].getIdVoiture() == voiture->getId())
+        //         {
+        //             std::string time1 = all_ev[i].getTempDebut();
+        //             std::string time2 = all_ev[i + 1].getTempDebut();
+        //             int seconds1 = parseTime(time1);
+        //             int seconds2 = parseTime(time2);
 
-    //             int temp_t = seconds2 - seconds1;
-    //             double temp_gamma = all_ev[i].getGamma();
-    //             double temp_v0 = all_ev[i].getVitesseInitial();
+        //             int temp_t = seconds2 - seconds1;
+        //             double temp_gamma = all_ev[i].getGamma();
+        //             double temp_v0 = all_ev[i].getVitesseInitial();
 
-    //             dash_timer->Start(100);
-    //             wxMilliSleep(temp_t * 1000);
-    //             wxYield();
+        //             dash_timer->Start(100);
+        //             wxMilliSleep(temp_t * 1000);
+        //             wxYield();
 
-    //             cout << "difference: " << temp_t << " index: " << i << endl;
-    //             break;
-    //         }
-    //     }
+        //             cout << "difference: " << temp_t << " index: " << i << endl;
+        //             break;
+        //         }
+        //     }
     }
     // wxMessageBox("Bouton cliqué !", "Information", wxOK | wxICON_INFORMATION);
 }
@@ -142,8 +151,15 @@ void MainFrame::OnComboBoxSelect(wxCommandEvent &event)
     Voiture *temp = new Voiture();
     temp = temp->getById(value->getId());
     // Voiture xoxo ((*temp).getId(), (*temp).getModel(), (*temp).getVitesseMaximal(), (*temp).getCapaciteAccelere(), (*temp).getCapaciteFreinage(), (*temp).getCarburantMaximal(), (*temp).getConsommation());
+    
+    
+    
+    
     voiture = temp;
-    dashboard->setVoitureDash(voiture);
+    voiture->conso_fixe = voiture->getConsommation();
+
+    cout << "consomme misafidy " <<  voiture->conso_fixe  << endl;
+     dashboard->setVoitureDash(voiture);
     dashboard->angleAiguille = -180 * ((voiture->getVitesse() / voiture->getVitesseMaximal()));
     voiture->setCarburantActuel(voiture->getCarburantMaximal() - voiture->getConsommation() * voiture->consommation_t);
 
@@ -226,8 +242,8 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
         //     // cout << " changement de vitesse initial " <<   voiture->getVitesseInital()  << " current " << current << " last " << last <<endl;
         // }
         if (!timer->IsRunning())
-        {
-
+        {   
+            voiture->setConsommation(voiture->conso_fixe * intensite );
             voiture->setGamma(voiture->getCapaciteAccelere() * intensite);
             voiture->addEvents(Evenement(last_id + 1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), my_time));
             Evenement last_event = voiture->getEventTuplet().back();
@@ -240,6 +256,7 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
     {
         // cout << "acceleration 1" << endl;
         intensite = 10.0 / 100.0;
+
         // current = voiture->getCapaciteAccelere() * intensite;
         // if (current != last)
         // {
@@ -248,6 +265,8 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
         // }
         if (!timer->IsRunning())
         {
+            voiture->setConsommation(voiture->conso_fixe * intensite );
+            cout << "ato zah no miova " << voiture->conso_fixe << endl; 
             voiture->setGamma(voiture->getCapaciteAccelere() * intensite);
             // voiture->setVitesseInitial(voiture->getVitesse());
             voiture->addEvents(Evenement(last_id + 1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), my_time));
@@ -260,14 +279,16 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
     {
         // cout << "acceleration 2" << endl;
         intensite = 20.0 / 100.0;
+        
         // current = voiture->getCapaciteAccelere() * intensite;
         // if (current != last)
         // {
-        //     dashboard->t = 0;
-        //     voiture->setVitesseInitial(voiture->getVitesse());
-        // }
-        if (!timer->IsRunning())
-        {
+            //     dashboard->t = 0;
+            //     voiture->setVitesseInitial(voiture->getVitesse());
+            // }
+            if (!timer->IsRunning())
+            {
+            voiture->setConsommation(voiture->conso_fixe * intensite );
             voiture->setGamma(voiture->getCapaciteAccelere() * intensite);
             // voiture->setVitesseInitial(voiture->getVitesse());
             voiture->addEvents(Evenement(last_id + 1, voiture->getId(), voiture->getVitesseInital(), voiture->getGamma(), my_time));
@@ -299,6 +320,8 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
     {
         // cout << "freinage 1" << endl;
         intensite = 10.0 / 100.0;
+        // voiture->setConsommation(voiture->conso_fixe * intensite);
+
         // current = voiture->getCapaciteFreinage() * intensite;
         // if (current != last)
         // {
@@ -319,6 +342,8 @@ void MainFrame::OnKeyDown(wxKeyEvent &event)
     {
         // cout << "freinage 2" << endl;
         intensite = 20.0 / 100.0;
+        // voiture->setConsommation(voiture->conso_fixe * intensite);
+
         // current = voiture->getCapaciteFreinage() * intensite;
         // if (current != last)
         // {
@@ -388,13 +413,13 @@ void MainFrame::OnKeyUp(wxKeyEvent &event)
             last = last_ev->getGamma();
         }
 
-        cout << "current " << current << " last " << last << endl;
         if (current != last)
         {
+            // dashboard->  parcouru_t =0;
             voiture->setVitesseInitial(voiture->getVitesse());
-            voiture->position_initial = voiture->position;
-            // dashboard->parcouru_t = 0;
-            // dashboard->t = 0;
+            // voiture->position_initial = voiture->position;
+            cout << "gamma: " << voiture->getGamma()  << " v0  " << voiture->getVitesseInital() <<   " x0: " << voiture->position_initial <<endl;
+            dashboard->t = 0;
         }
     }
 
